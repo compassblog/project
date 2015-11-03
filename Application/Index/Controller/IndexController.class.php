@@ -49,9 +49,9 @@ class IndexController extends BaseController {
         if (IS_POST) {
              $data['dintro'] = I('post.dintro');
              if ( $this->db->where('uid='.session('USERID'))->save($data)) {
-                  showmsg(1,'成功进入下一步',U('Index/my_pro_3'));
+                 showmsg(1,'成功进入下一步',U('Index/my_pro_3'));
              }else{
-                showmsg(1,'编辑失败');
+                showmsg(0,'编辑失败');
              }
   
             # code...
