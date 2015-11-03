@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="x-ua-compatible"/>
+<title>项目发布</title>
+<link rel="stylesheet" type="text/css" href="{:CS_PATH}admin/style.css" />
+<link rel="stylesheet" type="text/css" href="{:CS_PATH}font-awesome.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="<?php echo JS_PATH ?>DD_belatedPNG.js" ></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('*');
+</script>
+<![endif]-->
+<script type="text/javascript" src="{:JS_PATH}jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript" src="{:JS_PATH}Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="{:JS_PATH}Validform_Datatype.js"></script>
+
+
+<script type="text/javascript" src="{:JS_PATH}artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript" src="{:JS_PATH}artDialog/plugins/iframeTools.js" ></script>
+<script type="text/javascript">
+(function(config) {
+    config['lock'] = true;
+    config['fixed'] = true;
+})(art.dialog.defaults);
+</script>
+
+<script type="text/javascript" src="<?php echo JS_PATH;?>common.js"></script>
+</head>
+<body>
+
+    <form action="<?php echo U(ACTION_NAME) ?>" class="addform" method="post" onsubmit="return false">
+                                <dd>
+                                    <ul class="web">
+                                        <li>
+                                            <strong>档位金额：</strong>
+                                         
+                                                <input type="text" class="text_input"  name="price" placeholder='' datatype="n" value="{$info.price}" /><span class="Validform_checktip ">不小于1的整数</span>
+                                          
+                                           
+                                        </li>
+
+                                         <li>
+                                            <strong>档位说明：</strong>
+                                                <textarea class="text_input" name="intro" datatype="*3-15">{$info.intro}</textarea>
+                                                <span class="Validform_checktip ">档位说明</span>
+                                          
+                                           
+                                        </li>
+
+                                          <li> <strong>说明图片：</strong>
+                            <input type="text" class="text_input" value="{$info.img}" name="img" /><font class="img" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
+                            <span>选择文件
+选择文件
+支持JPG、JPEG、PNG、GIF格式；建议尺寸：690x512px；最多9张</span> </li>
+
+                                        
+                                          <li>
+                                            <strong>名额限制：</strong>
+                                             <b style="width:250px;">
+                                                <label><input type="radio" name="is_limit" placeholder=''  value='0' 
+                                                    <if condition="$info['is_limit'] eq 0 ">checked</if>>否
+                                                  <input type="radio" name="is_limit" placeholder=''  value='1' 
+                                                    <if condition="$info['is_limit'] eq 1 ">checked</if>>是      
+                                                    </label>
+                                                    <if condition="$info['is_limit'] eq 1">
+                                                    <input type="text" name="limit_num" id="limit_num"  value="{$info.limit_num}">
+                                                    <else/>
+                                                    <input type="text" name="limit_num" id="limit_num" style="display:none;">
+                                                    </if>
+                                              
+                                            </b>
+                                            <span class="Validform_checktip" style="margin-left:3px;">设置</span>
+                                        </li>
+
+                                          <li>
+                                            <strong>支持限制：</strong>
+                                             <b style="width:250px;">
+                                                <label><input type="radio" name="to_limit" placeholder=''  value='0' 
+                                                    <if condition="$info['to_limit'] eq 0 ">checked</if>>否
+                                                  <input type="radio" name="to_limit" placeholder=''  value='1' 
+                                                    <if condition="$info['to_limit'] eq 1 ">checked</if>>是      
+                                                    </label>
+                                             
+
+                                                     <if condition="$info['to_limit'] eq 1">
+                                                    <input type="text" name="limit_user" id="limit_user"  value="{$info.limit_user}">
+                                                    <else/>
+                                                    <input type="text" name="limit_user" id="limit_user" style="display:none;">
+                                                    </if>
+                                            
+                                            </b>
+                                            <span class="Validform_checktip" style="margin-left:3px;">设置</span>
+                                        </li>
+
+                                          <li>
+                                            <strong>邮寄类型：</strong>
+                                             <b style="width:250px;">
+                                                <label><input type="radio" name="email_type" placeholder=''  value='0' 
+                                                    <if condition="$info['email_type'] eq 0 ">checked</if>>快递
+                                                  <input type="radio" name="email_type" placeholder=''  value='1' 
+                                                    <if condition="$info['email_type'] eq 1 ">checked</if>>平邮     
+                                                    </label>
+                                              
+                                            </b>
+                                            <span class="Validform_checktip" style="margin-left:3px;">设置</span>
+                                        </li>
+
+                                          <li>
+                                            <strong>是否包邮：</strong>
+                                             <b style="width:250px;">
+                                                <label><input type="radio" name="is_email" placeholder=''  value='0' 
+                                                    <if condition="$info['is_email'] eq 0 ">checked</if>>否
+                                                  <input type="radio" name="is_email" placeholder=''  value='1' 
+                                                    <if condition="$info['is_email'] eq 1 ">checked</if>>是      
+                                                    </label>
+                                               
+                                            </b>
+                                            <span class="Validform_checktip" style="margin-left:3px;">设置</span>
+                                        </li>
+
+                                         <li>
+                                            <strong>回报天数：</strong>
+                                         
+                                                <input type="text" class="text_input"  name="re_time" placeholder='' datatype="n" value="{$info.re_time}" /><span class="Validform_checktip ">筹资结束后预计几天内</span>
+                                          
+                                           
+                                        </li>
+
+                                       
+                                       
+                                       
+                                      <if condition="$info neq null">
+                                           <input type="hidden" name="id" value="{$info.id}">
+                                      </if>
+                                      
+                                                                                                      
+    
+    
+    
+                                      <input type="hidden" name="uid" value="{:session('USERID')}">
+
+                                     
+                                    </ul>
+                                    <div class="submit">
+                                        <input type="submit" class='button_search' value='保存'/>
+                                        <a href="">保存，下一步</a>
+                                    </div>
+                                </dd>
+                            </form>
+</body>
+</html>
+<!--编辑器开始-->
+    <link rel="stylesheet" type="text/css" href="<?php echo CS_PATH; ?>Editor/themes/default/default.css">
+    <script type="text/javascript" src="<?php echo JS_PATH; ?>Editor/kindeditor-min.js"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH; ?>Editor/lang/zh_CN.js"></script>
+<script>  
+        //切换
+        $(function() {
+
+
+         
+            //编辑器载入
+            KindEditor.ready(function(K) {
+                //K.create('#content');
+                editor = K.editor({
+                    uploadJson : '<?php echo U("Index/Editor/upload");?>',
+                    fileManagerJson : '<?php echo U("Index/Editor/file_manage");?>',
+                    extraFileUploadParams: {
+                         PHPSESSID  : '<?php echo session_id() ?>',
+                         parentdir  : 'pro/',
+                    },
+                    allowFileManager: true
+                });
+
+            //单选框事件
+            $('input:radio[name="is_limit"]').click(function(){
+              var val = $(this).val();
+               if (val == 1) {
+                    $('#limit_num').css('display','block');
+               }else{
+                     $('#limit_num').css('display','none');
+               }
+            });
+
+              $('input:radio[name="to_limit"]').click(function(){
+              var val = $(this).val();
+               if (val == 1) {
+                    $('#limit_user').css('display','block');
+               }else{
+                     $('#limit_user').css('display','none');
+               }
+            });
+            
+             
+
+
+                //给按钮添加click事件
+                $('.img').live('click', function() {
+                    var self = $(this);
+                    editor.extraFileUploadParams.saveRule   = 'stall';
+                    editor.loadPlugin('image', function() {
+                        //图片弹窗的基本参数配置
+                        editor.plugin.imageDialog({
+                            imageUrl: self.prev('input').val(), //如果图片路径框内有内容直接赋值于弹出框的图片地址文本框
+                            //点击弹窗内”确定“按钮所执行的逻辑
+                            clickFn: function(url, title, width, height, border, align) {
+//                              alert(url);
+                                self.prev("input").val(url);
+                                
+                                //self.next("span").html("<img src=" + url + " height=43>");
+                                editor.hideDialog(); //隐藏弹窗
+                            }
+                        });
+                    });
+                });
+              
+            });
+        });
+    </script>
+
+<script type="text/javascript"> 
+    //提交表单
+    $(function() {
+      
+        var demo = $(".addform").Validform({
+            
+            btnSubmit: "#btn_sub",
+            btnReset: ".btn_reset",
+            tiptype:function(){},
+            label: ".label",
+            showAllError: false,
+            ajaxPost: true,
+            callback: function(data) {
+             
+                if (data.status == "0") {
+                    art.dialog({width: 320, time: 5, title: '温馨提示(5秒后关闭)', content: data.info, ok: true});
+                }
+                if (data.status == "1") {
+                    window.location.href = data.url;
+                }
+            }
+            
+        });
+    });
+</script>

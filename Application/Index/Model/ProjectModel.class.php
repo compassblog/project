@@ -8,4 +8,9 @@ class ProjectModel extends Model {
       array('update_time','time',3,'function'), // 对update_time进行操作
   	);
 
+  	public function getLists(){
+  		$list = $this->select();
+  		return $list;
+  	}
+
 }

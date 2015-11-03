@@ -39,7 +39,7 @@ DD_belatedPNG.fix('*');
                                         <li>
                                             <strong>项目名称：</strong>
                                          
-                                                <input type="text" class="text_input"  name="name" placeholder='' datatype="*3-15" value="" /><span class="Validform_checktip ">3-15个字符，英文，数字或中文皆可</span>
+                                                <input type="text" class="text_input"  name="name" placeholder='' datatype="*3-15" value="{$info.name}" /><span class="Validform_checktip ">3-15个字符，英文，数字或中文皆可</span>
                                           
                                            
                                         </li>
@@ -51,18 +51,24 @@ DD_belatedPNG.fix('*');
                                                 <!-- <label><input type="radio" name="status" placeholder=''  value='1' 
                                                     <if condition="$info['status'] eq 1 ">checked</if>>开启</label> -->
                                                 <volist name="class" id="vo">    
-                                                <label><input type="radio" name="cid" placeholder=''  value="{$vo.id}" <if condition="$info['status'] eq 0 ">checked</if>> {$vo.class_name}</label>
+                                                <label><input type="radio" name="cid" placeholder=''  value="{$vo.id}" <if condition="$info['cid'] eq $vo['id']">checked</if>> {$vo.class_name}</label>
                                                 </volist>
                                             </b>
                                             <span class="Validform_checktip" style="margin-left:3px;">设置类别</span>
                                         </li>
 
                                           <li>
-                                            <strong id="tit">项目标签：</strong>
+                                            <strong id="tit">项目标签：
+
+                                            <volist name="title" id="t">
+                                            <li style="color:red;">{$t}</li>
+                                            </volist>
+                                           
+                                            </strong>
                                          
                                                 <input type="text" class="text_input"
                                                 id="title" placeholder=''/>
-                                                  <input type="hidden" id="tot" name="title" value="">
+                                                  <input type="hidden" id="tot" name="title" value="{$info.title}">
                                                 <span class="Validform_checktip ">可以用空格分割标签</span>
                                           
                                            
@@ -70,34 +76,36 @@ DD_belatedPNG.fix('*');
 
                                          <li>
                                             <strong>项目简介：</strong>
-                                                <textarea class="text_input" name="intro" datatype="*3-15"></textarea>
+                                                <textarea class="text_input" name="intro" datatype="*3-15">{$info.intro}</textarea>
                                                 <span class="Validform_checktip "></span>
                                           
                                            
                                         </li>
 
                                         <li> <strong>封面图片：</strong>
-                            <input type="text" class="text_input" value="<?php echo C('site_logo') ?>" name="cover_img" /><font class="cover" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
+                            <input type="text" class="text_input" value="{$info.cover_img}" name="cover_img" /><font class="cover" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
                             <span>选择文件
 选择文件
 支持JPG、JPEG、PNG、GIF格式；建议尺寸：690x512px；最多9张</span> </li>
 
                             <li> <strong>顶部通栏：</strong>
-                            <input type="text" class="text_input" value="<?php echo C('site_logo') ?>" name="top_img" /><font class="top" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
+                            <input type="text" class="text_input" value="{$info.top_img}" name="top_img" /><font class="top" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
                             <span>（可选）支持JPG、JPEG、PNG、GIF格式；建议尺寸：2560x450px</span> </li>
 
 
                                <li>
                                             <strong>宣传视频：</strong>
                                          
-                                                <input type="text" class="text_input"  name="video_url" placeholder='' datatype="*3-15" value="" /><span class="Validform_checktip ">（可选）输入视频地址（支持爱奇艺、腾讯、优酷、土豆、酷6、新浪、搜狐视频）</span>
+                                                <input type="text" class="text_input"  name="video_url" placeholder='' datatype="*3-15" value="{$info.video_url}" /><span class="Validform_checktip ">（可选）输入视频地址（支持爱奇艺、腾讯、优酷、土豆、酷6、新浪、搜狐视频）</span>
                                           
                                            
                                         </li>
                                         
                                        
                                        
-                                      
+                                      <if condition="$info neq null">
+                                           <input type="hidden" name="id" value="{$info.id}">
+                                      </if>
                                       
                                                                                                       
     
@@ -108,8 +116,8 @@ DD_belatedPNG.fix('*');
                                      
                                     </ul>
                                     <div class="submit">
-                                        <input type="submit" class='button_search' value='保存'/>
-                                        <a href="">保存，下一步</a>
+                                        <input type="submit" class='button_search' value='下一步'/>
+                                      <!--   <a href="">保存，下一步</a> -->
                                     </div>
                                 </dd>
                             </form>

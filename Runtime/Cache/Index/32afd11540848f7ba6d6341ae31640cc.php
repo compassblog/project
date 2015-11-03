@@ -39,7 +39,7 @@ DD_belatedPNG.fix('*');
                                         <li>
                                             <strong>项目名称：</strong>
                                          
-                                                <input type="text" class="text_input"  name="name" placeholder='' datatype="*3-15" value="" /><span class="Validform_checktip ">3-15个字符，英文，数字或中文皆可</span>
+                                                <input type="text" class="text_input"  name="name" placeholder='' datatype="*3-15" value="<?php echo ($info["name"]); ?>" /><span class="Validform_checktip ">3-15个字符，英文，数字或中文皆可</span>
                                           
                                            
                                         </li>
@@ -50,17 +50,21 @@ DD_belatedPNG.fix('*');
                                              <b style="width:250px;">
                                                 <!-- <label><input type="radio" name="status" placeholder=''  value='1' 
                                                     <?php if($info['status'] == 1 ): ?>checked<?php endif; ?>>开启</label> -->
-                                                <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><label><input type="radio" name="cid" placeholder=''  value="<?php echo ($vo["id"]); ?>" <?php if($info['status'] == 0 ): ?>checked<?php endif; ?>> <?php echo ($vo["class_name"]); ?></label><?php endforeach; endif; else: echo "" ;endif; ?>
+                                                <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><label><input type="radio" name="cid" placeholder=''  value="<?php echo ($vo["id"]); ?>" <?php if($info['cid'] == $vo['id']): ?>checked<?php endif; ?>> <?php echo ($vo["class_name"]); ?></label><?php endforeach; endif; else: echo "" ;endif; ?>
                                             </b>
                                             <span class="Validform_checktip" style="margin-left:3px;">设置类别</span>
                                         </li>
 
                                           <li>
-                                            <strong id="tit">项目标签：</strong>
+                                            <strong id="tit">项目标签：
+
+                                            <?php if(is_array($title)): $i = 0; $__LIST__ = $title;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i;?><li style="color:red;"><?php echo ($t); ?></li><?php endforeach; endif; else: echo "" ;endif; ?>
+                                           
+                                            </strong>
                                          
                                                 <input type="text" class="text_input"
                                                 id="title" placeholder=''/>
-                                                  <input type="hidden" id="tot" name="title" value="">
+                                                  <input type="hidden" id="tot" name="title" value="<?php echo ($info["title"]); ?>">
                                                 <span class="Validform_checktip ">可以用空格分割标签</span>
                                           
                                            
@@ -68,46 +72,46 @@ DD_belatedPNG.fix('*');
 
                                          <li>
                                             <strong>项目简介：</strong>
-                                                <textarea class="text_input" name="intro" datatype="*3-15"></textarea>
+                                                <textarea class="text_input" name="intro" datatype="*3-15"><?php echo ($info["intro"]); ?></textarea>
                                                 <span class="Validform_checktip "></span>
                                           
                                            
                                         </li>
 
                                         <li> <strong>封面图片：</strong>
-                            <input type="text" class="text_input" value="<?php echo C('site_logo') ?>" name="cover_img" /><font class="cover" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
+                            <input type="text" class="text_input" value="<?php echo ($info["cover_img"]); ?>" name="cover_img" /><font class="cover" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
                             <span>选择文件
 选择文件
 支持JPG、JPEG、PNG、GIF格式；建议尺寸：690x512px；最多9张</span> </li>
 
                             <li> <strong>顶部通栏：</strong>
-                            <input type="text" class="text_input" value="<?php echo C('site_logo') ?>" name="top_img" /><font class="top" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
+                            <input type="text" class="text_input" value="<?php echo ($info["top_img"]); ?>" name="top_img" /><font class="top" style="cursor: pointer;position: absolute;left:300px;line-height: 22px;">选择</font>
                             <span>（可选）支持JPG、JPEG、PNG、GIF格式；建议尺寸：2560x450px</span> </li>
 
 
                                <li>
                                             <strong>宣传视频：</strong>
                                          
-                                                <input type="text" class="text_input"  name="video_url" placeholder='' datatype="*3-15" value="" /><span class="Validform_checktip ">（可选）输入视频地址（支持爱奇艺、腾讯、优酷、土豆、酷6、新浪、搜狐视频）</span>
+                                                <input type="text" class="text_input"  name="video_url" placeholder='' datatype="*3-15" value="<?php echo ($info["video_url"]); ?>" /><span class="Validform_checktip ">（可选）输入视频地址（支持爱奇艺、腾讯、优酷、土豆、酷6、新浪、搜狐视频）</span>
                                           
                                            
                                         </li>
                                         
                                        
                                        
-                                      
+                                      <?php if($info != null): ?><input type="hidden" name="id" value="<?php echo ($info["id"]); ?>"><?php endif; ?>
                                       
                                                                                                       
     
     
     
-                                      <input type="text" name="uid" value="<?php echo session('USERID');?>">
+                                      <input type="hidden" name="uid" value="<?php echo session('USERID');?>">
 
                                      
                                     </ul>
                                     <div class="submit">
-                                        <input type="submit" class='button_search' value='保存'/>
-                                        <a href="">保存，下一步</a>
+                                        <input type="submit" class='button_search' value='下一步'/>
+                                      <!--   <a href="">保存，下一步</a> -->
                                     </div>
                                 </dd>
                             </form>
