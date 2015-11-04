@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我支持的</title>
+<link rel="stylesheet" type="text/css" href="{:CS_PATH}admin/style.css" />
+<script type="text/javascript" src="{:JS_PATH}jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+
+<table border="1" width="80%" height="300px">
+<tr>
+	<td>项目</td>
+	<td>金额</td>
+	<td>状态</td>
+	<td>操作</td>	
+</tr>
+<volist name="list" id="vo">
+<tr>
+	<td>{$vo.proname}</td>
+	<td>{$vo.cart_price}￥</td>
+	<if condition="$vo['cart_status'] eq 0">
+	<td>等待付款</td>
+	<else />
+	<td>完成付款</td>
+	</if>
+	<if condition="$vo['cart_status'] eq 0">
+	<td><a href="{:U('Pay/index',array('id'=>$vo['sid']))}">完成付款</a>||<a href="#">取消</a></td>
+	<else />
+	<td><a href="{:U('Pay/delPay',array('id'=>$vo['id'],'price'=>$vo['cart_price']))}">取消</a></td>
+	</if>
+		
+</tr>	
+</volist>
+</table>
+
+</body>
+</html>

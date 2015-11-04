@@ -153,7 +153,8 @@ class IndexController extends BaseController {
      public function lists(){
         $db = D('Project');
         $list = $db->getLists();
-       //dump($list); 
+       // dump($list); 
+       $this->assign('list',$list);
         $this->display();
     }
 

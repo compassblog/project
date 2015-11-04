@@ -30,6 +30,16 @@ class StallModel extends Model {
   		return $list;
   	}
 
+    public function getStallStatusList($uid){
+      $list = $this->where('uid='.$uid.' and status = 1')->select();
+      return $list;
+    }
+
+    public function getUid($id){
+      $uid = $this->where('id='.$id)->getField('uid');
+      return $uid;
+    }
+
   	public function delStall($id){
 
   		$img = $this->where('id='.$id)->getField('img');

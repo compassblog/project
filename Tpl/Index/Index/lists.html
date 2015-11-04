@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>项目列表</title>
+<link rel="stylesheet" type="text/css" href="{:CS_PATH}admin/style.css" />
+<script type="text/javascript" src="{:JS_PATH}jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<volist name="list" id="vo">
+<ul>
+	<li><a href="{:U('Project/stallLists',array('uid'=>$vo['uid']))}"><img src="{$vo.cover_img}" width="100px" height="100px"><a></li>
+	<li><a href="{:U('Project/stallLists',array('uid'=>$vo['uid']))}">{$vo.name}<a></li>
+</ul>
+</volist>
+</body>
+</html>

@@ -32,7 +32,7 @@ DD_belatedPNG.fix('*');
 <script type="text/javascript" src="<?php echo JS_PATH;?>common.js"></script>
 </head>
 <body>
-<a href="<?php echo U('Index/add');?>">添加档位</a>||<a href="<?php echo U('Index/lists');?>">查看列表</a>
+<a href="<?php echo U('Index/add');?>">添加档位</a>||<a href="<?php echo U('Index/lists');?>">查看列表</a>||<a href="<?php echo U('Cart/my');?>">我支持的</a>
 <table border="1px" width="100%" >
    <tr>
        <td align="center">档位价格</td>
